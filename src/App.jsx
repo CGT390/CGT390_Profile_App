@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Card from './components/Card'
+import NavBar from './components/NavBar';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,7 +19,8 @@ function App() {
 
   return (
     <>
-      <h1>About Me</h1>
+      <NavBar/>
+      <h1 className="main-title" >About Me</h1>
       <h3 className="main-name">{name}</h3>
       <div className="main-email">{email}</div>
       {bio}

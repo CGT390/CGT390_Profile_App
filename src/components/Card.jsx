@@ -1,6 +1,6 @@
 import React from "react";
 import viteLogo from '/vite.svg';
-import './card.css'
+import './Card.css'
 import scooterImage from "../assets/scooter.jpeg"; 
 
 const Card = () => {
