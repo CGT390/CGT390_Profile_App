@@ -11,6 +11,9 @@ import laikaImage from './assets/laikaImage.jpeg';
 import dunkImage from './assets/dunkImage.jpeg';
 import edgarImage from './assets/edgarImage.jpeg';
 import gingerImage from './assets/gingerImage.jpeg';
+import masonImage from './assets/mason.png';
+import ezraImage from './assets/ezra.png';
+import statlerImage from './assets/statler.png';
 import CardWrapper from './components/CardWrapper'
 
 
@@ -75,6 +78,27 @@ function App() {
       title: "Negotiator",
       description: "Smooth-talking and clever, makes deals happen without raising suspicion.",
       image: gingerImage
+    },
+    {
+      id: 8,
+      name: "Mason 'Snowpaw'",
+      title: "Lookout",
+      description: "Small but vigilant, keeps an eye out for trouble with icy calm.",
+      image: masonImage
+    },
+    {
+      id: 9,
+      name: "Ezra 'Shadow Whisker'",
+      title: "Wild Card",
+      description: "No one knows what he’ll do next—clever, unpredictable, and always one step ahead.",
+      image: ezraImage
+    },
+    {
+      id: 10,
+      name: "Statler 'Silk Scarf'",
+      title: "Courier",
+      description: "Moves through the streets with effortless flair—wind in his fur, always on time, always noticed.",
+      image: statlerImage
     }
   ];
 
