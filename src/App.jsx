@@ -135,15 +135,19 @@ function App() {
         selectedTitle={selectedTitle}
         setSelectedTitle={setSelectedTitle}
       >
-        {filteredCards.map(card => (
-          <Card
-            key={card.id}
-            name={card.name}
-            title={card.title}
-            description={card.description}
-            image={card.image}
-          />
-        ))}
+        {filteredCards.length === 0 ? (
+          <p className="no-results">No profiles found</p>
+        ) : (
+          filteredCards.map(card => (
+            <Card
+              key={card.id}
+              name={card.name}
+              title={card.title}
+              description={card.description}
+              image={card.image}
+            />
+          ))
+        )}
       </CardWrapper>
     </>
   );
