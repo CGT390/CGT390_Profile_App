@@ -1,24 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Card from './components/Card'
-import NavBar from './components/NavBar';
-import scooterImage from './assets/scooter.jpeg';
-import bibiImage from './assets/bibi.jpeg';
-import murphyImage from './assets/murphyImage.jpeg';
-import laikaImage from './assets/laikaImage.jpeg';
-import dunkImage from './assets/dunkImage.jpeg';
-import edgarImage from './assets/edgarImage.jpeg';
-import gingerImage from './assets/gingerImage.jpeg';
-import masonImage from './assets/mason.png';
-import ezraImage from './assets/ezra.png';
-import statlerImage from './assets/statler.png';
+import NavBar from './components/NavBar'
 import CardWrapper from './components/CardWrapper'
 
+import scooterImage from './assets/scooter.jpeg'
+import bibiImage from './assets/bibi.jpeg'
+import murphyImage from './assets/murphyImage.jpeg'
+import laikaImage from './assets/laikaImage.jpeg'
+import dunkImage from './assets/dunkImage.jpeg'
+import edgarImage from './assets/edgarImage.jpeg'
+import gingerImage from './assets/gingerImage.jpeg'
+import masonImage from './assets/mason.png'
+import ezraImage from './assets/ezra.png'
+import statlerImage from './assets/statler.png'
 
 function App() {
-  // const [count, setCount] = useState(false);
+  const [theme, setTheme] = useState('light')
+  const toggleTheme = () =>
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'))
+
   const name = "Gillian Hanley"
   const bio = <div className="main-bio"> My name is Gillian Hanley, and I am currently a junior here at Purdue. I am studying Web Programming and Design,
     and I am working towards a minor in Computer Science. I love creating websites, and
@@ -113,27 +114,31 @@ function App() {
   const filteredCards = cardData.filter(card => {
     const matchesSearch =
       card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      card.description.toLowerCase().includes(searchTerm.toLowerCase());
+      card.description.toLowerCase().includes(searchTerm.toLowerCase())
 
     const matchesTitle =
-      selectedTitle === 'All' || card.title === selectedTitle;
+      selectedTitle === 'All' || card.title === selectedTitle
 
-    return matchesSearch && matchesTitle;
-  });
+    return matchesSearch && matchesTitle
+  })
 
   return (
-    <>
-      <NavBar />
-      <h1 className="main-title" >About Me</h1>
+    <div className={`app ${theme}`}>
+      <NavBar theme={theme} toggleTheme={toggleTheme} mode={theme}
+      />
+
+      <h1 className="main-title">About Me</h1>
       <h2 className="main-name">{name}</h2>
       <div className="main-email">{email}</div>
       {bio}
+
       <CardWrapper
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         titles={titles}
         selectedTitle={selectedTitle}
         setSelectedTitle={setSelectedTitle}
+        mode={theme}
       >
         {filteredCards.length === 0 ? (
           <p className="no-results">No profiles found</p>
@@ -141,16 +146,13 @@ function App() {
           filteredCards.map(card => (
             <Card
               key={card.id}
-              name={card.name}
-              title={card.title}
-              description={card.description}
-              image={card.image}
-            />
-          ))
+              {...card}
+              mode={theme}
+            />))
         )}
       </CardWrapper>
-    </>
-  );
+    </div>
+  )
 }
 
-export default App;
+export default App

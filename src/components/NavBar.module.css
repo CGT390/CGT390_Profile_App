@@ -1,7 +1,7 @@
 /* NavBar container */
 .navbar {
-  background-color: #270e0e;
-  padding: 12px 24px;
+  background-color: var(--bg-color);
+  padding: 24px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   display: flex;
   justify-content: space-between;
@@ -13,14 +13,14 @@
 }
 
 /* Logo */
-.navbar-logo {
+.navbarLogo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #dce1e9;
+  color: var(--text-color);
 }
 
 /* Nav links */
-.navbar-links {
+.navbarLinks {
   list-style: none;
   display: flex;
   gap: 20px;
@@ -28,13 +28,33 @@
   padding: 0;
 }
 
-.navbar-links li a {
+.navbarLinks li a {
   text-decoration: none;
-  color: #dce1e9;
+  color: var(--text-color);
   font-weight: 500;
   transition: color 0.2s ease-in-out;
 }
 
-.navbar-links li a:hover {
+.navbarLinks li a:hover {
   color: #3182ce; /* blue hover */
+}
+
+.themeToggle {
+  background: grey;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.light {
+  --bg-color: #e6e6e6;
+  --text-color: #1a202c;
+}
+
+/* 🌙 Dark mode */
+.dark {
+  --bg-color: #1e293b;
+  --text-color: #f8fafc;
 }

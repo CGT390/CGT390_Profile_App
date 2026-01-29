@@ -1,0 +1,52 @@
+.cardBox {
+  width: 200px;
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.cardImage {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+.cardName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.cardTitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.cardDescription {
+  font-size: 0.75rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* Dynamic mode styles */
+.light {
+  --card-bg: #dbdbdb;
+  --text: #1a202c;
+}
+
+.dark {
+  --card-bg: #1e293b;
+  --text: #f8fafc;
+}

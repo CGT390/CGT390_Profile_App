@@ -1,17 +1,17 @@
 import React from "react";
-import './Card.css';
+import styles from "./Card.module.css";
 
-const Card = ({ name, title, description, image }) => {
+const Card = ({ name, title, description, image, mode }) => {
     return (
-        <div className="card-box">
+        <div className={`${styles.cardBox} ${styles[mode]}`}>
             <img
-                className="card-image"
+                className={styles.cardImage}
                 src={image}
                 alt={`${name}'s profile`}
             />
-            <h2 className="card-name">{name}</h2>
-            <p className="card-title">{title}</p>
-            <p className="card-description">{description}</p>
+            <h2 className={styles.cardName}>{name}</h2>
+            <p className={styles.cardTitle}>{title}</p>
+            <p className={styles.cardDescription}>{description}</p>
         </div>
     );
 };

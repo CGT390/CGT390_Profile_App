@@ -1,0 +1,69 @@
+.cardWrapper {
+  padding: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5em;
+  justify-content: center;
+}
+
+.cardControls {
+  display: flex;
+  gap: 1em;
+  margin-top: 1em;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Labels */
+.cardLabel {
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Search input */
+.cardSearch {
+  padding: 0.5em;
+  font-size: 1em;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--input-bg);
+  color: var(--text);
+  width: 200px;
+}
+
+/* Dropdown */
+.cardDropdown {
+  padding: 0.5em;
+  font-size: 1em;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--input-bg);
+  color: var(--text);
+}
+
+/* Button */
+.cardClearButton {
+  padding: 0.5em 0.75em;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--button-bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* 🌞 Light mode */
+.light {
+  --input-bg: #ffffff;
+  --text: #1a202c;
+  --border: #cbd5e1;
+  --button-bg: #f1f5f9;
+}
+
+/* 🌙 Dark mode */
+.dark {
+  --input-bg: #1e293b;
+  --text: #f8fafc;
+  --border: #475569;
+  --button-bg: #334155;
+}
