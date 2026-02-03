@@ -1,0 +1,91 @@
+.formBox {
+  width: 400px;
+  background-color: var(--form-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  /* Changed to 'stretch' so inputs take full width of the 200px */
+  align-items: stretch;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  margin: 16px;
+  transition: background-color 0.3s ease;
+}
+
+/* Style for all text inputs and textareas */
+.formBox textarea, .titleInput, .nameInput, .emailInput {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: var(--form-input-bg);
+  /* Ensures padding doesn't add to width */
+  font-size: 14px;
+  color: var(--text);
+}
+
+label {
+  margin-top: 12px;
+  font-weight: bold;
+  color: var(--text);
+}
+
+button {
+  margin-top: 16px;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Highlighting inputs when there is an error */
+.inputError {
+  border-color: #ff4d4f !important;
+  background-color: #fff2f0;
+}
+
+/* Small, red error text style */
+.error {
+  color: #ff4d4f;
+  font-size: 11px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Styling the file upload area */
+.fileInputContainer {
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+.fileInputContainer label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.fileInputContainer input {
+  font-size: 11px;
+  width: 100%;
+}
+
+/* Dynamic mode styles */
+.light {
+  --form-bg: #dbdbdb;
+  --form-input-bg: #ffffff;
+  --text: #1a202c;
+}
+
+.dark {
+  --form-bg: #1e293b;
+  --form-input-bg: #2d3748;
+  --text: #f8fafc;
+}
