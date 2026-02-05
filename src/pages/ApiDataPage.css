@@ -1,0 +1,17 @@
+.api-data-page {
+  padding: 2em;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.api-data-page h2 {
+  color: var(--text);
+  margin-bottom: 1.5em;
+}
+
+.no-results {
+  color: var(--text);
+  font-size: 1.1rem;
+  margin: 2em 0;
+}

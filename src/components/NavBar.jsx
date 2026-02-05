@@ -3,12 +3,13 @@ import styles from './NavBar.module.css';
 import { Link } from 'react-router-dom';
 
 function NavBar({ theme, toggleTheme, mode }) {
-  const logoText = "MyProfile";
+  const logoText = "My Profile App";
 
   // Change href to to, and use actual paths instead of anchors (#)
   const navLinks = [
     { label: "About Me", to: "/" },
-    { label: "Create Card", to: "/contact" } // Matching your Route path="/contact"
+    { label: "Create Card", to: "/contact" }, // Matching your Route path="/contact"
+    { label: "API Data", to: "/apidata" } // Matching your Route path="/apidata"
   ];
 
   return (
@@ -16,11 +17,10 @@ function NavBar({ theme, toggleTheme, mode }) {
       <div className={styles.navbarLogo}>
         {/* Make the logo a link to home too! */}
         <Link to="/">{logoText}</Link>
+        <button onClick={toggleTheme} className={styles.themeToggle}>
+          {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+        </button>
       </div>
-
-      <button onClick={toggleTheme} className={styles.themeToggle}>
-        {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
-      </button>
 
       <ul className={styles.navbarLinks}>
         {navLinks.map((link, index) => (

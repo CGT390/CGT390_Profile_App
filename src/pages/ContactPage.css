@@ -1,0 +1,11 @@
+.form-page {
+  padding: 2em;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-page h2 {
+  color: var(--text);
+  margin-bottom: 1.5em;
+}

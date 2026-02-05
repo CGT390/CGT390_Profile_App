@@ -12,8 +12,6 @@ const CardWrapper = ({
 }) => {
   return (
     <>
-      <h1>Employees</h1>
-
       <div className={`${styles.cardControls} ${styles[mode]}`}>
         <p className={styles.cardLabel}>Search by Title:</p>
 
