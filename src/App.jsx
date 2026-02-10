@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 // Components
@@ -34,7 +34,7 @@ function App() {
   };
 
   return (
-    <Router basename="/CGT390_Profile_App/">
+    <Router>
       <div className={`app ${theme}`}>
         <NavBar theme={theme} toggleTheme={toggleTheme} mode={theme} />
 
