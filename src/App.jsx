@@ -9,6 +9,7 @@ import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
 import ApiDataPage from './pages/ApiDataPage';
+import NotFound from './pages/NotFound';
 
 // Data
 import { catData as initialCatData } from './data/homeData';
@@ -50,6 +51,10 @@ function App() {
             <Route 
               path="/apidata" 
               element={<ApiDataPage theme={theme} />} 
+            />
+            <Route
+              path="*"
+              element={<NotFound theme={theme} />}
             />
           </Routes>
         </main>
