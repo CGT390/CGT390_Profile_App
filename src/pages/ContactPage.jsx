@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Form from '../components/FOrm';
 import './ContactPage.css';
+import { useNavigate } from 'react-router-dom';
 
 const ContactPage = ({ theme, addProfile }) => {
   const [submitMessage, setSubmitMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleAddProfile = (newProfile) => {
     addProfile(newProfile);
@@ -11,6 +13,7 @@ const ContactPage = ({ theme, addProfile }) => {
     
     // Clear message after 3 seconds
     setTimeout(() => setSubmitMessage(''), 3000);
+    navigate('/'); // Redirect to home page after submission
   };
 
   return (

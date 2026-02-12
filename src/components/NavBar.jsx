@@ -9,7 +9,8 @@ function NavBar({ theme, toggleTheme, mode }) {
   const navLinks = [
     { label: "About Me", to: "/" },
     { label: "Create Card", to: "/contact" }, // Matching your Route path="/contact"
-    { label: "API Data", to: "/apidata" } // Matching your Route path="/apidata"
+    { label: "API Data", to: "/apidata" }, // Matching your Route path="/apidata"
+    { label: "Profile Page", to: "/profile/5" } // Example link to a profile page with id 1
   ];
 
   return (

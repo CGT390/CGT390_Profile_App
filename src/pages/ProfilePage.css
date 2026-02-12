@@ -1,0 +1,70 @@
+/* ProfilePage.css */
+
+/* Shared layout for profile pages */
+.profile-layout {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  background-color: var(--bg);
+  color: var(--text);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Go Back button */
+.go-back-btn {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.go-back-btn:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* Profile details */
+.profile-page {
+  text-align: center;
+}
+
+.profile-page img {
+  max-width: 250px;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.profile-page h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-page p {
+  font-size: 1.1rem;
+  margin: 0.3rem 0;
+}
+
+/* Theme variables */
+.app.light {
+  --bg: #ffffff;
+  --text: #222222;
+  --button-bg: #dddddd;
+  --button-text: #222222;
+  --button-hover-bg: #cccccc;
+}
+
+.app.dark {
+  --bg: #1e1e1e;
+  --text: #ffffff;
+  --button-bg: #333333;
+  --button-text: #ffffff;
+  --button-hover-bg: #444444;
+}

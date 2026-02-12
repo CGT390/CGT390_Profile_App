@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from '../components/Card';
 import CardWrapper from '../components/CardWrapper';
 import './ApiDataPage.css';
+import { Link } from 'react-router-dom';
 
 const ApiDataPage = ({ theme }) => {
     const [fetchedData, setFetchedData] = useState([]);
@@ -88,7 +89,9 @@ const ApiDataPage = ({ theme }) => {
                     <p className="no-results">No profiles found</p>
                 ) : (
                     filteredFetchedCards.map(card => (
-                        <Card key={card.id} {...card} mode={theme} />
+                        <Link key={card.id} to={`/profile/${card.id}`} className="profile-link">
+                            <Card key={card.id} {...card} mode={theme} />
+                        </Link>
                     ))
                 )}
             </CardWrapper>

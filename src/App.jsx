@@ -10,6 +10,8 @@ import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
 import ApiDataPage from './pages/ApiDataPage';
 import NotFound from './pages/NotFound';
+import ProfilePage from './pages/ProfilePage';
+import ProfileLayout from './pages/ProfileLayout';
 
 // Data
 import { catData as initialCatData } from './data/homeData';
@@ -24,12 +26,12 @@ function App() {
   const addProfile = (newProfile) => {
     // Generate a new ID
     const newId = catData.length > 0 ? Math.max(...catData.map(cat => cat.id)) + 1 : 1;
-    
+
     const profileWithId = {
       ...newProfile,
       id: newId
     };
-    
+
     setCatData(prevData => [...prevData, profileWithId]);
   };
 
@@ -40,18 +42,26 @@ function App() {
 
         <main className="content">
           <Routes>
-            <Route 
-              path="/" 
-              element={<HomePage theme={theme} catData={catData} />} 
+            <Route
+              path="/"
+              element={<HomePage theme={theme} catData={catData} />}
             />
-            <Route 
-              path="/contact" 
-              element={<ContactPage theme={theme} addProfile={addProfile} />} 
+            <Route
+              path="/contact"
+              element={<ContactPage theme={theme} addProfile={addProfile} />}
             />
-            <Route 
-              path="/apidata" 
-              element={<ApiDataPage theme={theme} />} 
+            
+            <Route
+              path="/apidata"
+              element={<ApiDataPage theme={theme} />}
             />
+            <Route path="/profile" element={<ProfileLayout theme={theme} />}>
+              <Route
+                path=":id"
+                element={<ProfilePage theme={theme}
+                 />}
+              />
+            </Route>
             <Route
               path="*"
               element={<NotFound theme={theme} />}

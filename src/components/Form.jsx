@@ -28,11 +28,13 @@ const Form = ({ mode, onUpdateProfiles }) => {
                 if (!value.includes("@")) return "Invalid email format.";
                 return "";
             case "image":
+                if (!value) return ""; // image is optional
                 const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
-                if (value && !allowedTypes.includes(value.type)) {
+                if (!allowedTypes.includes(value.type)) {
                     return "Invalid file type. Only PNG, JPG, and GIF allowed.";
                 }
                 return "";
+
             case "title":
                 if (!value.trim()) return "Title is required.";
                 return "";
@@ -47,13 +49,14 @@ const Form = ({ mode, onUpdateProfiles }) => {
     // 3. Generic Change Handler for Text
     const handleChange = (e) => {
         const { name, value } = e.target;
+
         setValues((prev) => ({ ...prev, [name]: value }));
 
-        // Clear errors as user types
-        if (errors[name]) {
-            setErrors((prev) => ({ ...prev, [name]: "" }));
-        }
+        // Validate as user types
+        const errorMsg = validate(name, value);
+        setErrors((prev) => ({ ...prev, [name]: errorMsg }));
     };
+
 
     // 4. Specific Handler for Files
     const handleFileChange = (e) => {
@@ -76,33 +79,45 @@ const Form = ({ mode, onUpdateProfiles }) => {
         setErrors((prev) => ({ ...prev, [name]: errorMsg }));
     };
 
-    const isFormIncomplete = !values.name.trim() || 
-                         !values.email.trim() || 
-                         !values.title.trim() || 
-                         !values.image;
-
+    const isFormIncomplete = !values.name.trim() ||
+        !values.email.trim() ||
+        !values.title.trim();
     const handleSubmit = (e) => {
         e.preventDefault();
         setSubmitting(true);
 
-        try {
-            if (Object.values(errors).some(err => err)) {
-                setErrors((prev) => ({ ...prev, general: "Please fix the errors above before submitting." }));
-                return;
-            }
+        // Validate all fields on submit
+        const newErrors = {};
+        Object.keys(values).forEach((key) => {
+            newErrors[key] = validate(key, values[key]);
+        });
 
+        // Check if there are any errors
+        const hasErrors = Object.values(newErrors).some(err => err);
+        if (hasErrors) {
+            setErrors((prev) => ({ ...prev, ...newErrors, general: "Please fix the errors above before submitting." }));
+            setSubmitting(false);
+
+            // Optionally scroll to first error
+            const firstErrorField = Object.keys(newErrors).find(key => newErrors[key]);
+            if (firstErrorField) {
+                document.getElementById(firstErrorField)?.scrollIntoView({ behavior: "smooth" });
+            }
+            return;
+        }
+
+        // No errors → submit form
+        try {
             const cleanedData = {
-                id: Date.now(), // Generate a unique ID so React doesn't get confused
+                id: Date.now(),
                 name: values.name,
                 title: values.title,
                 email: values.email,
-                description: values.bio, // Rename 'bio' to 'description' to match App.jsx
+                description: values.bio,
                 image: values.image ? URL.createObjectURL(values.image) : null
             };
 
-            // Simulate form submission
             onUpdateProfiles(cleanedData);
-            console.log("Form submitted successfully with data:", cleanedData);
 
             setValues({
                 name: "",
@@ -112,8 +127,7 @@ const Form = ({ mode, onUpdateProfiles }) => {
                 image: null,
             });
             setErrors({
-                name: "", title: "", email:
-                    "", bio: "", image: "", general: ""
+                name: "", title: "", email: "", bio: "", image: "", general: ""
             });
 
         } catch (error) {
@@ -121,8 +135,7 @@ const Form = ({ mode, onUpdateProfiles }) => {
         } finally {
             setSubmitting(false);
         }
-
-    }
+    };
 
     return (
         <form className={`${styles.formBox} ${styles[mode]}`} onSubmit={handleSubmit}>
