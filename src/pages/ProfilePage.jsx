@@ -1,14 +1,17 @@
 // src/pages/ProfilePage.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import './ProfilePage.css';
+import { AppContext } from '../AppContext'
 
-function ProfilePage({ theme }) {
+function ProfilePage() {
   const { id } = useParams();
   const currentId = parseInt(id);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { theme } = useContext(AppContext);
+
 
   useEffect(() => {
     const fetchProfile = async () => {

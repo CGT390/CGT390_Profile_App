@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import './NotFound.css';
+import { AppContext } from '../AppContext'
+import { useContext} from 'react';
 
-const NotFound = ({ theme }) => {
+
+const NotFound = () => {
+  const { theme } = useContext(AppContext);
+
   return (
     <div className={`notfound-page ${theme}`}>
       <div className="notfound-container">

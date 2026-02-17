@@ -1,39 +1,17 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-
-// Components
 import NavBar from './components/NavBar';
-
-// Pages
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
 import ApiDataPage from './pages/ApiDataPage';
 import NotFound from './pages/NotFound';
 import ProfilePage from './pages/ProfilePage';
 import ProfileLayout from './pages/ProfileLayout';
-
-// Data
-import { catData as initialCatData } from './data/homeData';
+import { AppContext } from './AppContext'
 
 function App() {
-  const [theme, setTheme] = useState('dark');
-  const toggleTheme = () => setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
-
-  // Shared state for cat profiles
-  const [catData, setCatData] = useState(initialCatData);
-
-  const addProfile = (newProfile) => {
-    // Generate a new ID
-    const newId = catData.length > 0 ? Math.max(...catData.map(cat => cat.id)) + 1 : 1;
-
-    const profileWithId = {
-      ...newProfile,
-      id: newId
-    };
-
-    setCatData(prevData => [...prevData, profileWithId]);
-  };
+  const { theme, catData, addProfile, toggleTheme } = useContext(AppContext);
 
   return (
     <Router>
@@ -44,27 +22,26 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<HomePage theme={theme} catData={catData} />}
+              element={<HomePage />}
             />
             <Route
               path="/contact"
-              element={<ContactPage theme={theme} addProfile={addProfile} />}
+              element={<ContactPage />}
             />
-            
+
             <Route
               path="/apidata"
-              element={<ApiDataPage theme={theme} />}
+              element={<ApiDataPage />}
             />
-            <Route path="/profile" element={<ProfileLayout theme={theme} />}>
+            <Route path="/profile" element={<ProfileLayout />}>
               <Route
                 path=":id"
-                element={<ProfilePage theme={theme}
-                 />}
+                element={<ProfilePage />}
               />
             </Route>
             <Route
               path="*"
-              element={<NotFound theme={theme} />}
+              element={<NotFound />}
             />
           </Routes>
         </main>

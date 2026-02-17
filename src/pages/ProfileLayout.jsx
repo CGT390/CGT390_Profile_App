@@ -1,10 +1,15 @@
 // src/pages/ProfileLayout.jsx
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { useContext} from 'react';
 import './ProfilePage.css';
+import { AppContext } from '../AppContext'
 
-function ProfileLayout({ theme }) {
+
+function ProfileLayout() {
     const navigate = useNavigate();
+    const { theme } = useContext(AppContext);
+
 
     return (
         <div className={`profile-layout ${theme}`}>

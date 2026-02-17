@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext  } from 'react';
 import Card from '../components/Card';
 import CardWrapper from '../components/CardWrapper';
 import './ApiDataPage.css';
 import { Link } from 'react-router-dom';
+import { AppContext } from '../AppContext'
 
-const ApiDataPage = ({ theme }) => {
+const ApiDataPage = () => {
     const [fetchedData, setFetchedData] = useState([]);
     const [fetchedTitles, setFetchedTitles] = useState([]);
     const [searchFetchedTerm, setSearchFetchedTerm] = useState('');
     const [selectedFetchedTitle, setSelectedFetchedTitle] = useState('All');
     const [isLoading, setIsLoading] = useState(true);
+    const { theme } = useContext(AppContext);
+
 
 
     const filteredFetchedCards = fetchedData.filter(card => {

@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Card from '../components/Card';
 import CardWrapper from '../components/CardWrapper';
 import { userData } from '../data/homeData';
 import './HomePage.css';
+import { AppContext } from '../AppContext'
 
-const HomePage = ({ theme, catData }) => {
+
+const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTitle, setSelectedTitle] = useState('All');
+  const { theme, catData } = useContext(AppContext);
+
 
   const titles = ['All', ...new Set(catData.map(card => card.title))];
 
