@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback, useMemo } from 'react';
 import Card from '../components/Card';
 import CardWrapper from '../components/CardWrapper';
 import { userData } from '../data/homeData';
@@ -14,11 +14,23 @@ const HomePage = () => {
 
   const titles = ['All', ...new Set(catData.map(card => card.title))];
 
-  const filteredCards = catData.filter(card => {
-    const matchesSearch = card.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesTitle = selectedTitle === 'All' || card.title === selectedTitle;
-    return matchesSearch && matchesTitle;
-  });
+  const filterCards = useCallback((cards) => {
+    return cards.filter(card => {
+      const matchesSearch = card.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+
+      const matchesTitle =
+        selectedTitle === 'All' ||
+        card.title === selectedTitle;
+
+      return matchesSearch && matchesTitle;
+    });
+  }, [searchTerm, selectedTitle]);
+
+  const filteredCards = useMemo(() => {
+    return filterCards(catData, searchTerm, selectedTitle);
+  }, [catData, searchTerm, selectedTitle, filterCards]);
 
   return (
     <>

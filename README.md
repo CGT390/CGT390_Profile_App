@@ -1,8 +1,14 @@
-Lab 11 Reflection: 
-In addition to adding a useContext for the theme, I also added it for the import of data for each of the individual profiles I created in one of the early labs. I also added useContext for addProfile, since it was used a lot in each of the pages. addProfile handles the addition of a profile through filling out the form, and catData holds the data I have for my own set of profiles. Theme, toggleTheme, catData, and addProfile were four of the states that I used most often in each of the pages. This means I don't have to import the theme or addProfile across multiple components, I simply need to just import it where needed. Any other state was either only used in one page or at maximum two, so it wasn't worth moving to Context.
+Lab 13 Reflection: 
+In this lab, I used useMemo and React.lazy to help the loading of my page. I did this on the contacts fetched from the API, and used the memo and lazy feature for loading the cards. I have actaully worked with memo before, though I haven't really understood how it worked. Sometimes I have used it when the components I am creating are taking a really long time to load. I also used useCallback on the function that filters the cards when search terms change. I think this will help my app run faster by removing the unnessecary loads that my app is doing. I also think that useCallback and useMemo could be very helpful in my next checkpoint/project, even if I am not querying large sums of data. I am excited to see how I will be able to improve my own personal project for this class.
+
 
 Lab 12 Reflection: 
 useReducer was much more helpful organization-wise, as I used it in my form component. I had many states for each part of the form, so defining them all at one was very helpful, especially when deciding when/how to update them. useRef allowed me to change values without a re-render, which I also used in my Form component. useLayoutEffect helped my page seem more seamless, since it mainly handles timing and loading. Using it made my page reformat much cleaner than before. I think all of these hooks could be helpful in large scale applications, specifically useReducer. useLayoutEffect was also helpful, but I am not sure if it would make the website quicker or slower with more input. useRef would definitely be helpful, as unecessary re-renders are not ideal in large scale applications.
+
+
+Lab 11 Reflection: 
+In addition to adding a useContext for the theme, I also added it for the import of data for each of the individual profiles I created in one of the early labs. I also added useContext for addProfile, since it was used a lot in each of the pages. addProfile handles the addition of a profile through filling out the form, and catData holds the data I have for my own set of profiles. Theme, toggleTheme, catData, and addProfile were four of the states that I used most often in each of the pages. This means I don't have to import the theme or addProfile across multiple components, I simply need to just import it where needed. Any other state was either only used in one page or at maximum two, so it wasn't worth moving to Context.
+
 
 # React + Vite
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

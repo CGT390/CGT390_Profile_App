@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext  } from 'react';
-import Card from '../components/Card';
+import React, { useState, useEffect, useContext, lazy, Suspense, useMemo } from 'react';
+const Card = lazy(() => import('../components/Card'));
 import CardWrapper from '../components/CardWrapper';
 import './ApiDataPage.css';
 import { Link } from 'react-router-dom';
@@ -14,12 +14,19 @@ const ApiDataPage = () => {
     const { theme } = useContext(AppContext);
 
 
+    const filteredFetchedCards = useMemo(() => {
+        return fetchedData.filter(card => {
+            const matchesSearch = card.name
+                .toLowerCase()
+                .includes(searchFetchedTerm.toLowerCase());
 
-    const filteredFetchedCards = fetchedData.filter(card => {
-        const matchesSearch = card.name.toLowerCase().includes(searchFetchedTerm.toLowerCase());
-        const matchesTitle = selectedFetchedTitle === 'All' || card.title === selectedFetchedTitle;
-        return matchesSearch && matchesTitle;
-    });
+            const matchesTitle =
+                selectedFetchedTitle === 'All' ||
+                card.title === selectedFetchedTitle;
+
+            return matchesSearch && matchesTitle;
+        });
+    }, [fetchedData, searchFetchedTerm, selectedFetchedTitle]);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -91,11 +98,13 @@ const ApiDataPage = () => {
                 ) : filteredFetchedCards.length === 0 ? (
                     <p className="no-results">No profiles found</p>
                 ) : (
-                    filteredFetchedCards.map(card => (
-                        <Link key={card.id} to={`/profile/${card.id}`} className="profile-link">
-                            <Card key={card.id} {...card} mode={theme} />
-                        </Link>
-                    ))
+                    <Suspense fallback={<p>Loading component...</p>}>
+                        {filteredFetchedCards.map(card => (
+                            <Link key={card.id} to={`/profile/${card.id}`} className="profile-link">
+                                <Card {...card} mode={theme} />
+                            </Link>
+                        ))}
+                    </Suspense>
                 )}
             </CardWrapper>
         </div>
