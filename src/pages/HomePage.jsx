@@ -4,33 +4,20 @@ import CardWrapper from '../components/CardWrapper';
 import { userData } from '../data/homeData';
 import './HomePage.css';
 import { AppContext } from '../AppContext'
-
+import { useFilteredCards } from '../hooks/useFilteredCards';
 
 const HomePage = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTitle, setSelectedTitle] = useState('All');
+
   const { theme, catData } = useContext(AppContext);
 
-
-  const titles = ['All', ...new Set(catData.map(card => card.title))];
-
-  const filterCards = useCallback((cards) => {
-    return cards.filter(card => {
-      const matchesSearch = card.name
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-
-      const matchesTitle =
-        selectedTitle === 'All' ||
-        card.title === selectedTitle;
-
-      return matchesSearch && matchesTitle;
-    });
-  }, [searchTerm, selectedTitle]);
-
-  const filteredCards = useMemo(() => {
-    return filterCards(catData, searchTerm, selectedTitle);
-  }, [catData, searchTerm, selectedTitle, filterCards]);
+  const {
+    searchTerm,
+    setSearchTerm,
+    selectedTitle,
+    setSelectedTitle,
+    titles,
+    filteredCards
+  } = useFilteredCards(catData);
 
   return (
     <>
